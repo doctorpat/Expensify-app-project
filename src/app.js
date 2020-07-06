@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import AppRouter from './routers/AppRouter';
-import {addExpense} from './actions/Expenses';
+import {startSetExpenses} from './actions/Expenses';
 import {setTextFilter} from './actions/Filters';
 import getVisibleExpenses from './selectors/Expenses';
 import configureStore from './store/configureStore';
@@ -19,4 +19,8 @@ const jsx = (
     </Provider>
 );
 
- ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('app'));
+});
